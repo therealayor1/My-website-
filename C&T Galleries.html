@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery Test</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: #2c3e50;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(90deg, rgba(0, 77, 77, 0.8) 0%, rgba(0, 102, 102, 0.7) 50%, rgba(0, 77, 77, 0.8) 100%);
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      color: #fff;
+      padding: 15px 0;
+      z-index: 10000;
+      box-shadow: 0 8px 20px rgba(0, 77, 77, 0.3);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      transition: background 0.3s ease;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      user-select: none;
+    }
+
+    nav.nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav.nav a:hover,
+    nav.nav a:focus {
+      color: #e0a800;
+      outline: none;
+    }
+
+    .background-blur {
+      background: url('images/bg.webp') no-repeat center center/cover;
+      filter: blur(1px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      animation: zoomBackground 20s ease-in-out infinite alternate;
+      transform-origin: center center;
+    }
+
+    @keyframes zoomBackground {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.85);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+
+    .vignette {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.25) 100%);
+    }
+
+    body {
+      padding-top: 70px;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #34495e;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      user-select: none;
+    }
+
+    .back-button {
+      background: linear-gradient(135deg, #00796b, #004d40);
+      color: white;
+      font-weight: 700;
+      padding: 12px 30px;
+      border-radius: 40px;
+      text-decoration: none;
+      box-shadow: 0 6px 12px rgba(0, 77, 77, 0.4);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+      display: inline-block;
+      margin-top: 10px;
+      margin-bottom: 40px;
+    }
+
+    .back-button:hover,
+    .back-button:focus {
+      background: linear-gradient(135deg, #004d40, #00796b);
+      box-shadow: 0 8px 20px rgba(0, 77, 77, 0.7);
+      outline: none;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 25px;
+      max-width: 1100px;
+      width: 90%;
+      padding: 0 10px 0;
+    }
+
+    .gallery-item {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+      filter: brightness(0.85);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.95);
+      backdrop-filter: blur(8px);
+      animation: fadeInModal 0.3s ease forwards;
+      cursor: zoom-out;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    @keyframes fadeInModal {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 15px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+      transition: transform 0.3s ease;
+      cursor: default;
+      user-select: none;
+      object-fit: contain;
+      background: #111;
+      padding: 5px;
+    }
+
+    .close {
+      position: absolute;
+      top: 80px; /* pushed down to avoid header */
+      right: 35px;
+      color: #fff;
+      font-size: 48px;
+      font-weight: 900;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.25s ease;
+      text-shadow: 0 0 8px rgba(255,255,255,0.6);
+      line-height: 1;
+    }
+
+    .close:hover {
+      color: #e74c3c;
+      text-shadow: 0 0 12px #e74c3c;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .gallery-item img {
+        height: 140px;
+      }
+
+      nav.nav a {
+        margin-left: 15px;
+        font-size: 0.9rem;
+      }
+
+      .container {
+        width: 95%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .modal-content {
+        max-width: 95%;
+        max-height: 80vh;
+      }
+
+      .close {
+        top: 60px;
+        right: 20px;
+        font-size: 36px;
+      }
+
+      .back-button {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+        border-radius: 30px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        margin-top: 10px;
+      }
+
+      .gallery-item img {
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <div class="logo">One Voice Enterprise</div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#book">Book Now</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="background-blur"></div>
+  <div class="overlay"></div>
+  <div class="vignette"></div>
+
+  <h1>C&T Galleries</h1>
+
+  <div class="gallery-grid" aria-label="Image gallery">
+    <!-- Add more images as needed -->
+    <div class="gallery-item" tabindex="0"><img src="images/chair1.jpg" alt="Chair 1" onclick="openModal(this)" /></div>
+    <div class="gallery-item" tabindex="0"><img src="images/chair2.jpg" alt="Chair 2" onclick="openModal(this)" /></div>
+    <div class="gallery-item" tabindex="0"><img src="images/chair3.jpg" alt="Chair 3" onclick="openModal(this)" /></div>
+    <div class="gallery-item" tabindex="0"><img src="images/chair4.jpg" alt="Chair 4" onclick="openModal(this)" /></div>
+    <div class="gallery-item" tabindex="0"><img src="images/chair5.jpg" alt="Chair 5" onclick="openModal(this)" /></div>
+    <div class="gallery-item" tabindex="0"><img src="images/chair6.jpg" alt="Chair 6" onclick="openModal(this)" /></div>
+    <div class="gallery-item" tabindex="0"><img src="images/chair7.jpg" alt="Chair 7" onclick="openModal(this)" /></div>
+    <div class="gallery-item" tabindex="0"><img src="images/chair8.jpg" alt="Chair 8" onclick="openModal(this)" /></div>
+    <div class="gallery-item" tabindex="0"><img src="images/chair9.jpg" alt="Chair 9" onclick="openModal(this)" /></div>
+    <div class="gallery-item" tabindex="0"><img src="images/chair10.jpg" alt="Chair 10" onclick="openModal(this)" /></div>
+    <div class="gallery-item" tabindex="0"><img src="images/chair11.jpg" alt="Chair 11" onclick="openModal(this)" /></div>
+  </div>
+
+  <a href="index.html#services" class="back-button" aria-label="Back to Services">← Back to Services</a>
+
+  <div id="imageModal" class="modal" role="dialog" aria-modal="true" aria-label="Image preview">
+    <span class="close" aria-label="Close modal" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage" alt="Expanded view" />
+  </div>
+
+  <script>
+    function openModal(img) {
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImage");
+      modal.style.display = "flex";
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      modal.querySelector('.close').focus();
+    }
+
+    function closeModal() {
+      const modal = document.getElementById("imageModal");
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(e) {
+      const modal = document.getElementById("imageModal");
+      if (e.target === modal) {
+        closeModal();
+      }
+    };
+
+    window.addEventListener('keydown', function(e) {
+      const modal = document.getElementById("imageModal");
+      if (modal.style.display === "flex" && e.key === "Escape") {
+        closeModal();
+      }
+    });
+
+    // Fix for keyboard accessibility
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const img = item.querySelector('img');
+          openModal(img);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
