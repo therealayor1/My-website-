@@ -5,7 +5,10 @@
   <title>Book Rentals - C&T Rentals</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #e0f0ff, #ffffff);
@@ -17,6 +20,7 @@
       justify-content: center;
       align-items: center;
     }
+
     .container {
       background: #fff;
       max-width: 700px;
@@ -25,9 +29,11 @@
       border-radius: 16px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
+
     .container:hover {
       box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
     }
+
     h1 {
       color: #0d6efd;
       text-align: center;
@@ -36,17 +42,20 @@
       letter-spacing: 1.2px;
       text-transform: uppercase;
     }
+
     form {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px 25px;
     }
+
     label {
       font-weight: 600;
       color: #444;
       display: block;
       margin-bottom: 6px;
     }
+
     input[type="text"],
     input[type="email"],
     input[type="tel"],
@@ -63,15 +72,20 @@
       font-family: inherit;
       resize: vertical;
     }
-    input:focus, select:focus, textarea:focus {
+
+    input:focus,
+    select:focus,
+    textarea:focus {
       outline: none;
       border-color: #0d6efd;
       box-shadow: 0 0 6px #0d6efd55;
     }
+
     textarea {
       grid-column: 1 / -1;
       min-height: 80px;
     }
+
     #totalDisplay {
       grid-column: 1 / -1;
       font-weight: 700;
@@ -80,9 +94,12 @@
       color: #0d6efd;
       text-align: right;
     }
-    #event_date, #payment {
+
+    #event_date,
+    #payment {
       width: 100%;
     }
+
     button[type="submit"] {
       grid-column: 1 / -1;
       background-color: #0d6efd;
@@ -99,17 +116,21 @@
       transition: background-color 0.3s ease;
       box-shadow: 0 4px 14px #0d6efdcc;
     }
+
     button[type="submit"]:hover {
       background-color: #084298;
       box-shadow: 0 6px 18px #084298cc;
     }
+
     @media (max-width: 600px) {
       form {
         grid-template-columns: 1fr;
       }
+
       textarea {
         min-height: 100px;
       }
+
       #totalDisplay {
         text-align: left;
       }
@@ -129,6 +150,9 @@
       <label for="phone">Phone Number:</label>
       <input type="tel" name="phone" id="phone" required />
 
+      <label for="location">Location:</label>
+      <input type="text" name="location" id="location" required placeholder="Event location or delivery address" />
+
       <label for="chairs">Chairs (₦1,000/dozen):</label>
       <input type="number" name="chairs" id="chairs" min="0" value="0" />
 
@@ -140,6 +164,9 @@
 
       <label for="decoration">Decoration Service:</label>
       <textarea name="decoration" id="decoration" placeholder="Describe what you need..."></textarea>
+
+      <label for="others">Other Requests:</label>
+      <textarea name="others" id="others" placeholder="Type anything else you'd like to rent or ask about..."></textarea>
 
       <label for="event_date">Event Date:</label>
       <input type="date" name="event_date" id="event_date" required />
@@ -173,10 +200,12 @@
         name: this.name.value,
         email: this.email.value,
         phone: this.phone.value,
+        location: this.location.value,
         chairs: this.chairs.value,
         canopy: this.canopy.value,
         shooting: this.shooting.value,
         decoration: this.decoration.value,
+        others: this.others.value,
         event_date: this.event_date.value,
         payment: this.payment.value,
         total: document.getElementById("totalDisplay").textContent
