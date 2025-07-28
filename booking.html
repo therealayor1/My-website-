@@ -184,7 +184,7 @@
 
       <div id="totalDisplay">Total: ₦0</div>
 
-      <input type="hidden" name="_captcha" value="false" />
+      <!-- Removed _captcha hidden input to avoid FormSubmit issues -->
       <input type="hidden" name="_next" value="thank-you.html" />
 
       <button type="submit">Submit Booking</button>
@@ -217,5 +217,16 @@
       localStorage.setItem('bookingData', JSON.stringify(formData));
     });
   </script>
+
+  <!--
+  For quick testing if FormSubmit works with your email:
+
+  <form action="https://formsubmit.co/taiwoomoniyi90@gmail.com" method="POST">
+    <input type="email" name="email" required placeholder="Your email" />
+    <button type="submit">Send</button>
+  </form>
+
+  Make sure you access this page via HTTPS or GitHub Pages URL, NOT as a local file.
+  -->
 </body>
 </html>
