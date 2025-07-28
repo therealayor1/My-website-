@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Thank You - C&T Rentals</title>
+  <title>Thank You - One Voice Rentals</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
@@ -24,6 +24,10 @@
       border-radius: 16px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
       text-align: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     h1 {
       color: #0d6efd;
@@ -34,13 +38,15 @@
     }
     p {
       font-size: 1.1rem;
-      margin: 10px 0;
+      margin: 10px 0 20px;
     }
     .summary {
       text-align: left;
       margin-top: 20px;
       border-top: 1px solid #0d6efd44;
       padding-top: 20px;
+      width: 100%;
+      max-width: 600px;
     }
     .summary h2 {
       color: #0d6efd;
@@ -55,6 +61,26 @@
       font-weight: 700;
       color: #444;
     }
+    #printBtn {
+  display: block;
+  margin: 30px auto 0 auto;
+  background-color: #198754;
+  color: white;
+  padding: 12px 35px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 14px #198754cc;
+  transition: background-color 0.3s ease;
+}
+#printBtn:hover {
+  background-color: #145c32;
+  box-shadow: 0 6px 18px #145c32cc;
+}
     @media (max-width: 600px) {
       .container {
         padding: 20px 15px;
@@ -63,12 +89,20 @@
         font-size: 0.95rem;
       }
     }
+    /* Hide print button on print */
+    @media print {
+      #printBtn {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Thank You for Your Booking!</h1>
-    <p>We have received your booking request and will contact you shortly.</p>
+    <p>We have received your booking request and will contact you shortly.
+        <br>Kindly Print Your Reciept
+    </p>
 
     <div class="summary" id="bookingSummary" style="display:none;">
       <h2>Your Booking Details</h2>
@@ -84,6 +118,8 @@
       <div><span class="label">Event Date:</span> <span id="event_date"></span></div>
       <div><span class="label">Preferred Payment Method:</span> <span id="payment"></span></div>
       <div><span class="label">Total:</span> <span id="total"></span></div>
+
+      <button id="printBtn" type="button">Print Booking Details</button>
     </div>
   </div>
 
@@ -106,13 +142,16 @@
       document.getElementById('event_date').textContent = bookingData.event_date || '-';
       document.getElementById('payment').textContent = bookingData.payment || '-';
       document.getElementById('total').textContent = bookingData.total || '₦0';
-
-      // Optionally clear localStorage if you want to remove bookingData after displaying
-      // localStorage.removeItem('bookingData');
     } else {
       // No booking data found, just show generic message
       document.getElementById('bookingSummary').style.display = 'none';
     }
+
+    // Print button event
+    document.getElementById('printBtn').addEventListener('click', () => {
+      alert("Please print this page for your booking records.");
+      window.print();
+    });
   </script>
 </body>
 </html>
