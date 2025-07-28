@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gallery Test</title>
-
+  <title>C&T Galleries - Chairs</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body, html {
       height: 100%;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f8f9fa;
       color: #2c3e50;
       overflow-x: hidden;
@@ -33,7 +32,6 @@
       z-index: 10000;
       box-shadow: 0 8px 20px rgba(0, 77, 77, 0.3);
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      transition: background 0.3s ease;
     }
 
     .container {
@@ -63,7 +61,6 @@
     nav.nav a:hover,
     nav.nav a:focus {
       color: #e0a800;
-      outline: none;
     }
 
     .background-blur {
@@ -76,7 +73,6 @@
       height: 100%;
       z-index: -3;
       animation: zoomBackground 20s ease-in-out infinite alternate;
-      transform-origin: center center;
     }
 
     @keyframes zoomBackground {
@@ -106,22 +102,17 @@
     }
 
     body {
-      padding-top: 70px;
-      text-align: center;
-      min-height: 100vh;
+      padding-top: 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 40px;
     }
 
     h1 {
       font-size: 3rem;
       font-weight: 700;
-      letter-spacing: 2px;
+      margin-top: 20px;
       color: #34495e;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-      user-select: none;
     }
 
     .back-button {
@@ -132,27 +123,16 @@
       border-radius: 40px;
       text-decoration: none;
       box-shadow: 0 6px 12px rgba(0, 77, 77, 0.4);
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
-      display: inline-block;
-      margin-top: 10px;
-      margin-bottom: 40px;
-    }
-
-    .back-button:hover,
-    .back-button:focus {
-      background: linear-gradient(135deg, #004d40, #00796b);
-      box-shadow: 0 8px 20px rgba(0, 77, 77, 0.7);
-      outline: none;
+      margin: 20px 0 40px;
     }
 
     .gallery-grid {
+      width: 90%;
+      max-width: 1100px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 25px;
-      max-width: 1100px;
-      width: 90%;
-      padding: 0 10px 0;
+      padding-bottom: 50px;
     }
 
     .gallery-item {
@@ -162,7 +142,6 @@
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       overflow: hidden;
-      position: relative;
     }
 
     .gallery-item:hover {
@@ -176,12 +155,13 @@
       object-fit: cover;
       border-radius: 12px;
       display: block;
-      transition: transform 0.4s ease;
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.1);
-      filter: brightness(0.85);
+    .gallery-item figcaption {
+      padding: 10px 15px;
+      font-size: 1rem;
+      color: #555;
+      text-align: center;
     }
 
     .modal {
@@ -194,35 +174,49 @@
       height: 100%;
       background-color: rgba(0,0,0,0.95);
       backdrop-filter: blur(8px);
-      animation: fadeInModal 0.3s ease forwards;
-      cursor: zoom-out;
       justify-content: center;
       align-items: center;
       padding: 20px;
-      box-sizing: border-box;
-    }
-
-    @keyframes fadeInModal {
-      from {opacity: 0;}
-      to {opacity: 1;}
+      flex-direction: column;
+      
     }
 
     .modal-content {
-      max-width: 90%;
-      max-height: 90vh;
-      border-radius: 15px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.7);
-      transition: transform 0.3s ease;
-      cursor: default;
-      user-select: none;
+  position: relative;
+  max-width: 95%;
+  max-height: 80vh; /* reduce height slightly to fit better */
+  margin-top: 120px; /* 👈 push content below header */
+  border-radius: 15px;
+  background: #111;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+    .modal-content img {
+      max-width: 100%;
+      max-height: 65vh;
       object-fit: contain;
-      background: #111;
-      padding: 5px;
+      border-radius: 12px;
     }
 
-    .close {
+    .modal-content img:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
+}
+
+    .modal-caption {
+      color: #eee;
+      font-size: 1.1rem;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .modal-close {
       position: absolute;
-      top: 80px; /* pushed down to avoid header */
+      top: 80px;
       right: 35px;
       color: #fff;
       font-size: 48px;
@@ -230,65 +224,56 @@
       cursor: pointer;
       user-select: none;
       transition: color 0.25s ease;
-      text-shadow: 0 0 8px rgba(255,255,255,0.6);
-      line-height: 1;
     }
 
-    .close:hover {
-      color: #e74c3c;
-      text-shadow: 0 0 12px #e74c3c;
+    .modal-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      font-size: 48px;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 50%;
+      background-color: rgba(0,0,0,0.3);
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-
-      .gallery-item img {
-        height: 140px;
-      }
-
-      nav.nav a {
-        margin-left: 15px;
-        font-size: 0.9rem;
-      }
-
-      .container {
-        width: 95%;
-      }
+    .modal-arrow.left {
+      left: 20px;
     }
 
-    @media (max-width: 480px) {
-      .modal-content {
-        max-width: 95%;
-        max-height: 80vh;
-      }
+    .modal-arrow.right {
+      right: 20px;
+    }
 
-      .close {
-        top: 60px;
-        right: 20px;
-        font-size: 36px;
-      }
+    .modal-arrow:hover,
+    .modal-close:hover {
+      color: #e0a800;
+    }
 
-      .back-button {
-        padding: 10px 20px;
-        font-size: 0.95rem;
-        border-radius: 30px;
-      }
+    .download-btn {
+  margin-top: 15px;
+  margin-bottom: 30px; /* 👈 move it up from bottom */
+  padding: 10px 25px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
 
-      h1 {
-        font-size: 1.8rem;
-        margin-top: 10px;
-      }
-
-      .gallery-item img {
-        height: 120px;
-      }
+    .download-btn:hover {
+      background-color: #218838;
     }
   </style>
 </head>
-
 <body>
+  <div class="background-blur"></div>
+  <div class="overlay"></div>
+  <div class="vignette"></div>
 
   <header>
     <div class="container">
@@ -302,74 +287,166 @@
     </div>
   </header>
 
-  <div class="background-blur"></div>
-  <div class="overlay"></div>
-  <div class="vignette"></div>
-
   <h1>C&T Galleries</h1>
 
-  <div class="gallery-grid" aria-label="Image gallery">
-    <!-- Add more images as needed -->
-    <div class="gallery-item" tabindex="0"><img src="images/chair1.jpg" alt="Chair 1" onclick="openModal(this)" /></div>
-    <div class="gallery-item" tabindex="0"><img src="images/chair2.jpg" alt="Chair 2" onclick="openModal(this)" /></div>
-    <div class="gallery-item" tabindex="0"><img src="images/chair3.jpg" alt="Chair 3" onclick="openModal(this)" /></div>
-    <div class="gallery-item" tabindex="0"><img src="images/chair4.jpg" alt="Chair 4" onclick="openModal(this)" /></div>
-    <div class="gallery-item" tabindex="0"><img src="images/chair5.jpg" alt="Chair 5" onclick="openModal(this)" /></div>
-    <div class="gallery-item" tabindex="0"><img src="images/chair6.jpg" alt="Chair 6" onclick="openModal(this)" /></div>
-    <div class="gallery-item" tabindex="0"><img src="images/chair7.jpg" alt="Chair 7" onclick="openModal(this)" /></div>
-    <div class="gallery-item" tabindex="0"><img src="images/chair8.jpg" alt="Chair 8" onclick="openModal(this)" /></div>
-    <div class="gallery-item" tabindex="0"><img src="images/chair9.jpg" alt="Chair 9" onclick="openModal(this)" /></div>
-    <div class="gallery-item" tabindex="0"><img src="images/chair10.jpg" alt="Chair 10" onclick="openModal(this)" /></div>
-    <div class="gallery-item" tabindex="0"><img src="images/chair11.jpg" alt="Chair 11" onclick="openModal(this)" /></div>
-  </div>
+  <main class="gallery-grid" id="gallery">
+    <!-- Add your chair images below -->
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair1.jpg" alt="Chair 1" />
+      <figcaption>Chair 1</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair2.jpg" alt="Chair 2" />
+      <figcaption>Chair 2</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair3.jpg" alt="Chair 3" />
+      <figcaption>Chair 3</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair4.jpg" alt="Chair 4" />
+      <figcaption>Chair 4</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair5.jpg" alt="Chair 5" />
+      <figcaption>Chair 5</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/table1.jpg" alt="Table 1" />
+      <figcaption>Table 1</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair6.jpg" alt="Chair 6" />
+      <figcaption>Chair 6</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair7.jpg" alt="Chair 1" />
+      <figcaption>Chair 7</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair1.jpg" alt="Chair " />
+      <figcaption>Chair 1</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair8.jpg" alt="Chair 8" />
+      <figcaption>Chair 8</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair9.jpg" alt="Chair 9" />
+      <figcaption>Chair 9</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair10.jpg" alt="Chair 10" />
+      <figcaption>Chair 10</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair11.jpg" alt="Chair 11" />
+      <figcaption>Chair 11</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair111.jpg" alt="Chair 12" />
+      <figcaption>Chair 12</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair112.jpg" alt="Chair 13" />
+      <figcaption>Chair 13</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair14.jpg" alt="Chair 14" />
+      <figcaption>Chair 14</figcaption>
+    </figure>
+    <figure class="gallery-item" tabindex="0">
+      <img src="images/chair/chair113.jpg" alt="Chair 15" />
+      <figcaption>Chair 15</figcaption>
+    </figure>
+    <!-- Repeat for other chairs -->
+  </main>
 
-  <a href="index.html#services" class="back-button" aria-label="Back to Services">← Back to Services</a>
+  <a href="index.html#services" class="back-button">← Back to Services</a>
 
-  <div id="imageModal" class="modal" role="dialog" aria-modal="true" aria-label="Image preview">
-    <span class="close" aria-label="Close modal" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="modalImage" alt="Expanded view" />
+  <div id="modal" class="modal">
+    <span class="modal-close" id="modalClose">&times;</span>
+    <span class="modal-arrow left" id="modalPrev">&#8249;</span>
+    <div class="modal-content">
+      <img id="modalImg" src="" alt="" />
+    </div>
+    <div class="modal-caption" id="modalCaption"></div>
+    <a id="downloadBtn" class="download-btn" download>Download Image</a>
+    <span class="modal-arrow right" id="modalNext">&#8250;</span>
   </div>
 
   <script>
-    function openModal(img) {
-      const modal = document.getElementById("imageModal");
-      const modalImg = document.getElementById("modalImage");
-      modal.style.display = "flex";
-      modalImg.src = img.src;
-      modalImg.alt = img.alt;
-      modal.querySelector('.close').focus();
+    const gallery = document.getElementById('gallery');
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalCaption = document.getElementById('modalCaption');
+    const modalClose = document.getElementById('modalClose');
+    const modalPrev = document.getElementById('modalPrev');
+    const modalNext = document.getElementById('modalNext');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    const galleryItems = Array.from(gallery.querySelectorAll('.gallery-item'));
+    let currentIndex = -1;
+
+    function openModal(src, caption, index) {
+      modal.style.display = 'flex';
+      modalImg.src = src;
+      modalCaption.textContent = caption;
+      downloadBtn.href = src;
+      currentIndex = index;
+      document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
-      const modal = document.getElementById("imageModal");
-      modal.style.display = "none";
+      modal.style.display = 'none';
+      modalImg.src = '';
+      modalCaption.textContent = '';
+      document.body.style.overflow = 'auto';
     }
 
-    window.onclick = function(e) {
-      const modal = document.getElementById("imageModal");
-      if (e.target === modal) {
-        closeModal();
-      }
-    };
+    function showImageAt(index) {
+      if (index < 0) index = galleryItems.length - 1;
+      if (index >= galleryItems.length) index = 0;
+      const item = galleryItems[index];
+      const img = item.querySelector('img');
+      const caption = item.querySelector('figcaption')?.textContent || img.alt;
+      openModal(img.src, caption, index);
+    }
 
-    window.addEventListener('keydown', function(e) {
-      const modal = document.getElementById("imageModal");
-      if (modal.style.display === "flex" && e.key === "Escape") {
-        closeModal();
+    gallery.addEventListener('click', (e) => {
+      const target = e.target.closest('.gallery-item');
+      if (!target) return;
+      const index = galleryItems.indexOf(target);
+      const img = target.querySelector('img');
+      const caption = target.querySelector('figcaption')?.textContent || img.alt;
+      openModal(img.src, caption, index);
+    });
+
+    gallery.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const target = e.target.closest('.gallery-item');
+        const index = galleryItems.indexOf(target);
+        const img = target.querySelector('img');
+        const caption = target.querySelector('figcaption')?.textContent || img.alt;
+        openModal(img.src, caption, index);
       }
     });
 
-    // Fix for keyboard accessibility
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          const img = item.querySelector('img');
-          openModal(img);
-        }
-      });
+    modalClose.onclick = closeModal;
+    modalPrev.onclick = () => showImageAt(currentIndex - 1);
+    modalNext.onclick = () => showImageAt(currentIndex + 1);
+
+    document.addEventListener('keydown', (e) => {
+      if (modal.style.display === 'flex') {
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') showImageAt(currentIndex - 1);
+        if (e.key === 'ArrowRight') showImageAt(currentIndex + 1);
+      }
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
     });
   </script>
-
 </body>
 </html>

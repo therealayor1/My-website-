@@ -181,23 +181,30 @@
     }
 
     .modal-content {
-      position: relative;
-      max-width: 95%;
-      max-height: 90vh;
-      border-radius: 15px;
-      background: #111;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  position: relative;
+  max-width: 95%;
+  max-height: 80vh; /* reduce height slightly to fit better */
+  margin-top: 120px; /* 👈 push content below header */
+  border-radius: 15px;
+  background: #111;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .modal-content img {
+.modal-content img {
       max-width: 100%;
-      max-height: 85vh;
+      max-height: 65vh;
       object-fit: contain;
       border-radius: 12px;
     }
+
+    .modal-content img:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
+}
 
     .modal-caption {
       color: #eee;
@@ -244,17 +251,18 @@
     }
 
     .download-btn {
-      margin-top: 15px;
-      padding: 10px 25px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
+  margin-top: 15px;
+  margin-bottom: 30px; /* 👈 move it up from bottom */
+  padding: 10px 25px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
 
     .download-btn:hover {
       background-color: #218838;
@@ -310,92 +318,92 @@
     <!-- Add your images here -->
     <!-- Example -->
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor1.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor1.jpg" alt="Setup 1" />
+      <figcaption>Setup 1</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor2.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor2.jpg" alt="Setup 2" />
+      <figcaption>Setup 2</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor3.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor3.jpg" alt="Setup 3" />
+      <figcaption>Setup 3</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor4.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor4.jpg" alt="Setup 4" />
+      <figcaption>Setup 4</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor5.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor5.jpg" alt="Setup 5" />
+      <figcaption>Setup 5</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor6.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor6.jpg" alt="Setup 6" />
+      <figcaption>Setup 6</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor7.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor7.jpg" alt="Setup 7" />
+      <figcaption>Setup 7</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor8.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor8.jpg" alt="Setup 8" />
+      <figcaption>Setup 8</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor9.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor9.jpg" alt="Setup 9" />
+      <figcaption>Setup 9</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor10.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor10.jpg" alt="Setup 10" />
+      <figcaption>Setup 10</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor11.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor11.jpg" alt="Setup 11" />
+      <figcaption>Setup 11</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor12.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor12.jpg" alt="Setup 12" />
+      <figcaption>Setup 12</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor13.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor13.jpg" alt="Setup 13" />
+      <figcaption>Setup 13</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor14.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor14.jpg" alt="Setup 14" />
+      <figcaption>Setup 14</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor15.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor15.jpg" alt="Setup 15" />
+      <figcaption>Setup 15</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor16.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor16.jpg" alt="Setup 16" />
+      <figcaption>Setup 16</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor17.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor17.jpg" alt="Setup 17" />
+      <figcaption>Setup 17</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor18.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor18.jpg" alt="Setup 18" />
+      <figcaption>Setup 18</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor19.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor19.jpg" alt="Setup 19" />
+      <figcaption>Setup 19</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor20.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor20.jpg" alt="Setup 20" />
+      <figcaption>Setup 20</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor21.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor21.jpg" alt="Setup 21" />
+      <figcaption>Setup 21</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-      <img src="images/Decor/decor22.jpg" alt="Elegant Floral Setup" />
-      <figcaption>Elegant Floral Setup</figcaption>
+      <img src="images/Decor/decor22.jpg" alt="Setup 22" />
+      <figcaption>Setup 22</figcaption>
     </figure>
   </main>
 

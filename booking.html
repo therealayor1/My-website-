@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Book Rentals - C&T Rentals</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Reset some default styles */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0f0ff, #ffffff);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: #fff;
+      max-width: 700px;
+      width: 100%;
+      padding: 30px 35px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .container:hover {
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+    }
+
+    h1 {
+      color: #0d6efd;
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 25px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 25px;
+    }
+
+    label {
+      font-weight: 600;
+      color: #444;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1.8px solid #bbb;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      font-family: inherit;
+      resize: vertical;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    input[type="number"]:focus,
+    input[type="date"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #0d6efd;
+      box-shadow: 0 0 6px #0d6efd55;
+    }
+
+    textarea {
+      grid-column: 1 / -1;
+      min-height: 80px;
+    }
+
+    /* Make some inputs full width for better UX */
+    #totalDisplay {
+      grid-column: 1 / -1;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #0d6efd;
+      text-align: right;
+    }
+
+    /* Event date & payment method full width */
+    #event_date,
+    #payment {
+      width: 100%;
+    }
+
+    /* Full width for buttons */
+    button[type="submit"] {
+      grid-column: 1 / -1;
+      background-color: #0d6efd;
+      color: white;
+      padding: 14px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 15px;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 14px #0d6efdcc;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #084298;
+      box-shadow: 0 6px 18px #084298cc;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+
+      textarea {
+        min-height: 100px;
+      }
+
+      #totalDisplay {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Book Our Services</h1>
+
+    <form id="bookingForm" action="https://formsubmit.co/taiwoomoniyi90@gmail.com" method="POST" oninput="updateTotal()">
+      <label for="name">Full Name:</label>
+      <input type="text" name="name" id="name" required />
+
+      <label for="email">Email Address:</label>
+      <input type="email" name="email" id="email" required />
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" name="phone" id="phone" required />
+
+      <label for="chairs">Chairs (₦1,000/dozen):</label>
+      <input type="number" name="chairs" id="chairs" min="0" value="0" />
+
+      <label for="canopy">Normal Canopy (₦3,000 each):</label>
+      <input type="number" name="canopy" id="canopy" min="0" value="0" />
+
+      <label for="shooting">Shooting Canopy (₦7,000 each):</label>
+      <input type="number" name="shooting" id="shooting" min="0" value="0" />
+
+      <label for="decoration">Decoration Service:</label>
+      <textarea name="decoration" id="decoration" placeholder="Describe what you need..."></textarea>
+
+      <label for="event_date">Event Date:</label>
+      <input type="date" name="event_date" id="event_date" required />
+
+      <label for="payment">Preferred Payment Method:</label>
+      <select name="payment" id="payment">
+        <option value="Pay on Delivery">Pay on Delivery</option>
+        <option value="Bank Transfer">Bank Transfer</option>
+      </select>
+
+      <div id="totalDisplay">Total: ₦0</div>
+
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="thank-you.html" />
+
+      <button type="submit">Submit Booking</button>
+    </form>
+  </div>
+
+  <script>
+    function updateTotal() {
+      const chairs = parseInt(document.getElementById("chairs").value) || 0;
+      const canopy = parseInt(document.getElementById("canopy").value) || 0;
+      const shooting = parseInt(document.getElementById("shooting").value) || 0;
+      const total = (chairs * 1000) + (canopy * 3000) + (shooting * 7000);
+      document.getElementById("totalDisplay").textContent = "Total: ₦" + total.toLocaleString();
+    }
+
+    // Save form data to localStorage before submit to show on thank-you page
+    document.getElementById('bookingForm').addEventListener('submit', function () {
+      const formData = {
+        name: this.name.value,
+        email: this.email.value,
+        phone: this.phone.value,
+        chairs: this.chairs.value,
+        canopy: this.canopy.value,
+        shooting: this.shooting.value,
+        decoration: this.decoration.value,
+        event_date: this.event_date.value,
+        payment: this.payment.value,
+        total: document.getElementById("totalDisplay").textContent
+      };
+      localStorage.setItem('bookingData', JSON.stringify(formData));
+    });
+  </script>
+</body>
+</html>
