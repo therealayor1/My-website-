@@ -115,6 +115,8 @@
       color: #34495e;
     }
 
+   
+
     .back-home {
       background: linear-gradient(135deg, #00796b, #004d40);
       color: white;
@@ -200,10 +202,10 @@
     }
 
     .modal-content img:hover {
-      transform: scale(1.1);
-      transition: transform 0.3s ease;
-      cursor: zoom-in;
-    }
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
+}
 
     .modal-caption {
       color: #eee;
@@ -266,32 +268,6 @@
       background-color: #218838;
     }
 
-    /* Mobile responsiveness starts here */
-    @media (max-width: 900px) {
-      .container {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-      }
-      nav.nav {
-        width: 100%;
-        text-align: center;
-      }
-      nav.nav a {
-        margin: 8px 12px;
-        font-size: 0.9rem;
-      }
-      .gallery-container {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      }
-      h1 {
-        font-size: 2.5rem;
-      }
-      .back-home {
-        font-size: 1rem;
-      }
-    }
-
     @media (max-width: 600px) {
       .modal-content {
         max-width: 100%;
@@ -341,30 +317,31 @@
   <main class="gallery-container" id="gallery">
     <!-- Add your images here -->
     <!-- Example -->
-    <figure class="gallery-item" tabindex="0" aria-label="Industrial Fan 1">
+    <figure class="gallery-item" tabindex="0">
       <img src="images/fans/fan1.jpg" alt="Fan 1" />
       <figcaption>Fan 1</figcaption>
     </figure>
-    <figure class="gallery-item" tabindex="0" aria-label="Industrial Fan 2">
-      <img src="images/fans/fan2.jpg" alt="Fan 2" />
+    <figure class="gallery-item" tabindex="0">
+        <img src="images/fans/fan2.jpg" alt="Fan 2" />
       <figcaption>Fan 2</figcaption>
     </figure>
-    <figure class="gallery-item" tabindex="0" aria-label="Industrial Fan 3">
-      <img src="images/fans/fan3.jpg" alt="Fan 3" />
+    <figure class="gallery-item" tabindex="0">
+        <img src="images/fans/fan3.jpg" alt="Fan 3" />
       <figcaption>Fan 3</figcaption>
     </figure>
-    <figure class="gallery-item" tabindex="0" aria-label="Industrial Fan 4">
-      <img src="images/fans/fan4.jpg" alt="Fan 4" />
+    <figure class="gallery-item" tabindex="0">
+        <img src="images/fans/fan4.jpg" alt="Fan 4" />
       <figcaption>Fan 4</figcaption>
     </figure>
-    <figure class="gallery-item" tabindex="0" aria-label="Industrial Fan 5">
-      <img src="images/fans/fan5.jpg" alt="Fan 5" />
+    <figure class="gallery-item" tabindex="0">
+        <img src="images/fans/fan5.jpg" alt="Fan 5" />
       <figcaption>Fan 5</figcaption>
     </figure>
-    <figure class="gallery-item" tabindex="0" aria-label="Industrial Fan 6">
-      <img src="images/fans/fan6.jpg" alt="Fan 6" />
+    <figure class="gallery-item" tabindex="0">
+        <img src="images/fans/fan6.jpg" alt="Fan 6" />
       <figcaption>Fan 6</figcaption>
     </figure>
+    
   </main>
 
   <a href="index.html#services" class="back-home">← Back to Services</a>
@@ -376,7 +353,7 @@
       <img id="modalImg" src="" alt="" />
     </div>
     <div class="modal-caption" id="modalCaption"></div>
-    <a id="downloadBtn" class="download-btn" download aria-label="Download current image">Download Image</a>
+    <a id="downloadBtn" class="download-btn" download>Download Image</a>
     <span class="modal-arrow right" id="modalNext">&#8250;</span>
   </div>
 
