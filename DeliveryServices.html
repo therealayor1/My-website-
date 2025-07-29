@@ -124,6 +124,14 @@
       text-decoration: none;
       box-shadow: 0 6px 12px rgba(0, 77, 77, 0.4);
       margin: 20px 0 40px;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-home:hover,
+    .back-home:focus {
+      background-color: #004d40;
+      outline: none;
     }
 
     .gallery-container {
@@ -144,9 +152,11 @@
       overflow: hidden;
     }
 
-    .gallery-item:hover {
+    .gallery-item:hover,
+    .gallery-item:focus {
       transform: translateY(-8px);
       box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+      outline: none;
     }
 
     .gallery-item img {
@@ -197,13 +207,13 @@
       max-height: 85vh;
       object-fit: contain;
       border-radius: 12px;
+      transition: transform 0.3s ease;
     }
 
     .modal-content img:hover {
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
-  cursor: zoom-in;
-}
+      transform: scale(1.1);
+      cursor: zoom-in;
+    }
 
     .modal-caption {
       color: #eee;
@@ -260,16 +270,60 @@
       cursor: pointer;
       text-decoration: none;
       transition: background-color 0.3s ease;
+      display: inline-block;
     }
 
     .download-btn:hover {
       background-color: #218838;
     }
 
+    /* MOBILE RESPONSIVE */
     @media (max-width: 600px) {
-      .modal-content {
-        max-width: 100%;
-        max-height: 80vh;
+      header .container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 0 15px;
+      }
+
+      nav.nav {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 0.95rem;
+      }
+
+      nav.nav a {
+        margin-left: 0;
+        padding: 8px 15px;
+        background-color: rgba(255 255 255 / 0.1);
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+      }
+
+      nav.nav a:hover,
+      nav.nav a:focus {
+        background-color: #e0a800;
+        color: #000;
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-top: 100px;
+      }
+
+      body {
+        padding-top: 110px;
+      }
+
+      .gallery-container {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 15px;
+      }
+
+      .gallery-item img {
+        height: 120px;
       }
 
       .modal-close {
@@ -280,14 +334,34 @@
 
       .modal-arrow {
         font-size: 36px;
+        padding: 8px;
       }
 
-      h1 {
-        font-size: 2rem;
+      .modal-content {
+        max-width: 100%;
+        max-height: 80vh;
+      }
+
+      .modal-content img {
+        max-height: 70vh;
+      }
+
+      .modal-caption {
+        font-size: 1rem;
+      }
+
+      .download-btn {
+        font-size: 0.9rem;
+        padding: 8px 20px;
+        margin-bottom: 15px;
       }
 
       .back-home {
         font-size: 0.9rem;
+        padding: 10px 20px;
+        width: 90%;
+        text-align: center;
+        margin: 20px auto 40px;
       }
     }
   </style>
@@ -314,49 +388,47 @@
 
   <main class="gallery-container" id="gallery">
     <!-- Add your images here -->
-    <!-- Example -->
     <figure class="gallery-item" tabindex="0">
       <img src="images/deliveries/car1.jpg" alt="Car 1" />
       <figcaption>Delivery 1</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-        <img src="images/deliveries/car2.jpg" alt="Car 2" />
+      <img src="images/deliveries/car2.jpg" alt="Car 2" />
       <figcaption>Delivery 2</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-        <img src="images/deliveries/car3.jpg" alt="Car 3" />
+      <img src="images/deliveries/car3.jpg" alt="Car 3" />
       <figcaption>Delivery 3</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-        <img src="images/deliveries/car4.jpg" alt="Car 4" />
+      <img src="images/deliveries/car4.jpg" alt="Car 4" />
       <figcaption>Delivery 4</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-        <img src="images/deliveries/car5.jpg" alt="Car 5" />
+      <img src="images/deliveries/car5.jpg" alt="Car 5" />
       <figcaption>Delivery 5</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-        <img src="images/deliveries/car6.jpg" alt="Car 6" />
+      <img src="images/deliveries/car6.jpg" alt="Car 6" />
       <figcaption>Delivery 6</figcaption>
     </figure>
     <figure class="gallery-item" tabindex="0">
-        <img src="images/deliveries/car7.jpg" alt="Car 7" />
+      <img src="images/deliveries/car7.jpg" alt="Car 7" />
       <figcaption>Delivery 7</figcaption>
     </figure>
-    
   </main>
 
   <a href="index.html#services" class="back-home">← Back to Services</a>
 
-  <div id="modal" class="modal">
-    <span class="modal-close" id="modalClose">&times;</span>
-    <span class="modal-arrow left" id="modalPrev">&#8249;</span>
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalCaption">
+    <span class="modal-close" id="modalClose" role="button" tabindex="0" aria-label="Close modal">&times;</span>
+    <span class="modal-arrow left" id="modalPrev" role="button" tabindex="0" aria-label="Previous image">&#8249;</span>
     <div class="modal-content">
       <img id="modalImg" src="" alt="" />
     </div>
     <div class="modal-caption" id="modalCaption"></div>
     <a id="downloadBtn" class="download-btn" download>Download Image</a>
-    <span class="modal-arrow right" id="modalNext">&#8250;</span>
+    <span class="modal-arrow right" id="modalNext" role="button" tabindex="0" aria-label="Next image">&#8250;</span>
   </div>
 
   <script>
@@ -409,6 +481,7 @@
     gallery.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         const target = e.target.closest('.gallery-item');
+        if (!target) return;
         const index = galleryItems.indexOf(target);
         const img = target.querySelector('img');
         const caption = target.querySelector('figcaption').textContent;
@@ -419,6 +492,15 @@
     modalClose.onclick = closeModal;
     modalPrev.onclick = () => showImageAt(currentIndex - 1);
     modalNext.onclick = () => showImageAt(currentIndex + 1);
+
+    [modalClose, modalPrev, modalNext].forEach(el => {
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          el.click();
+        }
+      });
+    });
 
     document.addEventListener('keydown', (e) => {
       if (modal.style.display === 'flex') {

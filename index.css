@@ -292,68 +292,70 @@
 
 
 /* Additional Mobile Enhancements for smaller screens */
-@media (max-width: 480px) {
+/* Make header container stack vertically on small screens */
+@media (max-width: 600px) {
   .container {
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    padding: 1rem;
   }
 
-  .nav {
+  /* Stack nav links vertically */
+  nav.nav {
+    margin-top: 10px;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.6rem;
+    gap: 12px;
   }
 
-  .nav a {
-    font-size: 0.95rem;
+  nav.nav a {
+    margin-left: 0; /* reset left margin */
+    font-size: 1.1rem;
+  }
+
+  /* Hero section tweaks */
+  .hero {
+    height: auto; /* allow flexible height */
+    padding: 6rem 1.5rem 3rem;
   }
 
   .hero h1 {
-    font-size: 1.7rem;
-    line-height: 1.3;
+    font-size: 2rem;
   }
 
   .hero p {
-    font-size: 1rem;
-    padding: 0 1rem;
+    font-size: 1.1rem;
   }
 
   .btn {
-    font-size: 0.9rem;
-    padding: 0.7rem 1.2rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
   }
 
+  /* Service grid: 1 column on small devices */
   .service-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem;
   }
 
   .service-card img {
-    height: 160px;
+    height: 180px;
   }
 
-  .why-container {
-    padding: 0 0.5rem;
-  }
-
+  /* Why choose us form align center on small */
   .why-form {
-    padding-left: 1rem;
+    padding-left: 0;
     align-items: center;
   }
 
-  footer p {
-    font-size: 0.85rem;
-    line-height: 1.4;
+  /* Footer adjustments */
+  footer {
+    padding: 1.5rem 1rem;
   }
 
   .footer-links a {
-    display: inline-block;
-    margin: 0.3rem;
     font-size: 0.9rem;
-  }
-
-  .logo {
-    font-size: 1.3rem;
+    margin: 0 0.3rem;
   }
 }
