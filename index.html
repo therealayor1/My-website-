@@ -8,19 +8,25 @@
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <div class="logo">One Voice Enterprise</div>
-      <nav class="nav">
-          <a href="index.html">Home</a>
-          <a href="index.html#services">Services</a>
-          <a href="index.html#book">Book Now</a>
-          <a href="index.html#contact">Contact</a>
-        </nav>
-        
-      </div>
-  </header>
+
+<!-- Header -->
+<header>
+  <div class="container">
+    <!-- Hamburger on the left -->
+    <div class="hamburger" id="hamburger">☰</div>
+
+    <!-- Logo next to hamburger -->
+    <div class="logo">One Voice Enterprise</div>
+
+    <!-- Navigation Menu -->
+    <nav class="nav" id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#book">Book Now</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -137,5 +143,45 @@
     </div>
   </footer>
 
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+  
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+  </script>
+  
+  
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

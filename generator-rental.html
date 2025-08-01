@@ -34,27 +34,36 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+     /* Container */
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: relative;
+  }
 
-    .logo {
+      /* Order: Hamburger -> Logo -> Nav */
+.hamburger {
+  font-size: 1.8rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  display: none;
+}
+
+.logo {
       font-weight: 700;
       font-size: 1.5rem;
       user-select: none;
     }
+
 
     nav.nav a {
       color: white;
       text-decoration: none;
       margin-left: 25px;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 1.2rem;
       transition: color 0.3s ease;
     }
 
@@ -266,30 +275,51 @@
       background-color: #218838;
     }
 
-    @media (max-width: 480px) {
-      .modal-content {
-        max-width: 100%;
-        max-height: 80vh;
-      }
+    /* Show hamburger on mobile */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+    color: white;
+  }
 
-      .modal-close {
-        top: 15px;
-        right: 20px;
-        font-size: 36px;
-      }
+  .nav {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    top: calc(100% + 16px);  /* This moves it 10px lower */
+    left: 0;
+    right: 250px;
+    padding: 1rem;
+    border-radius: 1px;
+    text-align: left;
+  
+    
+  }
 
-      .modal-arrow {
-        font-size: 36px;
-      }
+  .nav.active {
+    display: flex;
+  }
 
-      h1 {
-        font-size: 2rem;
-      }
+  .nav a {
+    color: white;
+    font-size: 1.5rem; /* Bigger text */
+    margin-left: 0;
+    padding: 0.5rem 0;
+  }
 
-      .back-home {
-        font-size: 0.9rem;
-      }
-    }
+
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 700;
+    font-size: 1.5rem;
+    user-select: none;
+    white-space: nowrap; /* 🔥 Prevents wrapping */
+    text-align: center;
+  }
+}
   </style>
 </head>
 <body>
@@ -298,17 +328,24 @@
   <div class="overlay"></div>
   <div class="vignette"></div>
 
-  <header>
-    <div class="container">
-      <div class="logo">One Voice Enterprise</div>
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="index.html#services">Services</a>
-        <a href="index.html#book">Book Now</a>
-        <a href="index.html#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <!-- Header -->
+<header>
+  <div class="container">
+    <!-- Hamburger on the left -->
+    <div class="hamburger" id="hamburger">☰</div>
+
+    <!-- Logo next to hamburger -->
+    <div class="logo">One Voice Enterprise</div>
+
+    <!-- Navigation Menu -->
+    <nav class="nav" id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#book">Book Now</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
   <h1>Generators</h1>
 
@@ -423,6 +460,15 @@
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
     });
+
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+  
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+  
+    
   </script>
 </body>
 </html>
